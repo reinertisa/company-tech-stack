@@ -16,6 +16,9 @@ public class Company {
     private String name;
 
     @Column(nullable = false)
+    private Integer companyId;
+
+    @Column(nullable = false)
     private String address;
 
     @Column(nullable = false)
