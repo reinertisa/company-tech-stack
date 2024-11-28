@@ -10,6 +10,7 @@ public class CompanyMapper implements Function<Company, CompanyDto> {
     @Override
     public CompanyDto apply(Company company) {
         return CompanyDto.builder()
+                .id(company.getId())
                 .name(company.getName())
                 .companyId(company.getCompanyId())
                 .address(company.getAddress())
