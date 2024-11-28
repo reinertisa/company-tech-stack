@@ -10,7 +10,7 @@ import lombok.Data;
 public class CompanyDto {
     private Long id;
     private String name;
-    private Integer companyId;
+    private String companyId;
     private String address;
     private Integer numOfEmployees;
     private String industry;
