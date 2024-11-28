@@ -16,7 +16,7 @@ public class Company {
     private String name;
 
     @Column(nullable = false)
-    private Integer companyId;
+    private String companyId;
 
     @Column(nullable = false)
     private String address;
