@@ -25,6 +25,19 @@ export default function CompanyForm() {
                     }
                 })}
             />
+
+            <label htmlFor="companyId">Company ID: </label>
+            <input id="companyId" type="text" />
+
+            <label htmlFor="address">Address: </label>
+            <input id="address" type="text" />
+
+            <label htmlFor="numOfEmployees">Number of employees: </label>
+            <input id="numOfEmployeess" type="text" />
+
+            <label htmlFor="industry">Industry: </label>
+            <input id="industry" type="text" />
+
             <button type="submit">Submit</button>
         </form>
     )
