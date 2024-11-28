@@ -26,7 +26,7 @@ public class CompanyRequest {
     @NotBlank(message = "This field is required.")
     private String industry;
 
-    @NotBlank(message = "This field is required.")
+    @NotNull(message = "This field is required.")
     private CompanyType type;
 
 }

@@ -27,6 +27,7 @@ public class Company {
     @Column(nullable = false)
     private String industry;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private CompanyType type;
 }
