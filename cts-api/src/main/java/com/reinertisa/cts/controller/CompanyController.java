@@ -21,21 +21,19 @@ public class CompanyController {
 
     private final CompanyServiceImpl companyService;
 
-    @GetMapping(value = "")
-    @ResponseStatus(HttpStatus.OK)
+    @GetMapping
     public ResponseEntity<List<CompanyDto>> getAllCompanies() {
         try {
-            return ResponseEntity.ok().body(companyService.getAllCompanies());
+            return ResponseEntity.status(HttpStatus.OK).body(companyService.getAllCompanies());
         } catch (Exception ex) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage(), ex);
         }
     }
 
     @GetMapping(value = "/{cid}")
-    @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<CompanyDto> getCompanyByCompanyId(@PathVariable(value = "cid") String companyId) {
         try {
-            return ResponseEntity.ok().body(companyService.getCompanyByCompanyId(companyId));
+            return ResponseEntity.status(HttpStatus.OK).body(companyService.getCompanyByCompanyId(companyId));
         } catch (ResourceNotFoundException ex) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, ex.getMessage(), ex);
         } catch (Exception ex) {
@@ -43,12 +41,10 @@ public class CompanyController {
         }
     }
 
-    @PostMapping(value = "")
-    @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Void> createCompany(@Valid @RequestBody CompanyRequest companyRequest) {
+    @PostMapping
+    public ResponseEntity<CompanyDto> createCompany(@Valid @RequestBody CompanyRequest companyRequest) {
         try {
-            companyService.createCompany(companyRequest);
-            return ResponseEntity.status(HttpStatus.CREATED).body(null);
+            return ResponseEntity.status(HttpStatus.CREATED).body(companyService.createCompany(companyRequest));
         } catch (Exception ex) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage(), ex);
         }

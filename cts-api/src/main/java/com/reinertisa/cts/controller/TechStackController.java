@@ -21,7 +21,7 @@ public class TechStackController {
 
     private final TechStackServiceImpl techStackService;
 
-    @GetMapping(value = "")
+    @GetMapping
     public ResponseEntity<List<TechStackDto>> getAllTechStacks() {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(techStackService.getAllTechStacks());
@@ -41,7 +41,7 @@ public class TechStackController {
         }
     }
 
-    @PostMapping(value = "")
+    @PostMapping
     public ResponseEntity<Void> createTechStack(@Valid @RequestBody TechStackRequest techStackRequest) {
         try {
             techStackService.createTechStack(techStackRequest);
