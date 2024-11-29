@@ -3,6 +3,9 @@ package com.reinertisa.cts.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Getter @Setter @Builder
 @AllArgsConstructor @NoArgsConstructor
 @Entity
@@ -30,4 +33,10 @@ public class Company {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private CompanyType type;
+
+    @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinTable(name = "CompanyTechStackAssoc",
+            joinColumns = {@JoinColumn(name = "companyId", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "techStackId", referencedColumnName = "id")})
+    private Set<TechStack> techStacks = new HashSet<>();
 }
