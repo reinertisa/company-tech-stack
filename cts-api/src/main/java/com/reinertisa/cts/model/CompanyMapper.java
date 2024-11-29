@@ -17,6 +17,7 @@ public class CompanyMapper implements Function<Company, CompanyDto> {
                 .numOfEmployees(company.getNumOfEmployees())
                 .industry(company.getIndustry())
                 .type(company.getType())
+                .techStacks(company.getTechStacks())
                 .build();
     }
 }

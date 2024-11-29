@@ -47,6 +47,7 @@ public class CompanyServiceImpl implements CompanyService {
                 .numOfEmployees(companyRequest.getNumOfEmployees())
                 .industry(companyRequest.getIndustry())
                 .type(companyRequest.getType())
+                .techStacks(companyRequest.getTechStacks())
                 .build();
         companyRepository.save(company);
 

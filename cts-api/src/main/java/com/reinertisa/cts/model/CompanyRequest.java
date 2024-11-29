@@ -7,6 +7,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Set;
+
 @Getter @Setter
 @Builder
 public class CompanyRequest {
@@ -28,5 +30,7 @@ public class CompanyRequest {
 
     @NotNull(message = "This field is required.")
     private CompanyType type;
+
+    private Set<TechStack> techStacks;
 
 }
