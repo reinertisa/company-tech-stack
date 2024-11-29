@@ -14,7 +14,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 
 @RestController
-@RequestMapping(name = "/api/v1/techStacks")
+@RequestMapping(value = "/api/v1/techStacks")
 @RequiredArgsConstructor
 @CrossOrigin
 public class TechStackController {
