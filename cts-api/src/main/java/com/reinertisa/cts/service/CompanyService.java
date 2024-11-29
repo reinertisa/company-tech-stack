@@ -13,7 +13,7 @@ public interface CompanyService {
 
     CompanyDto getCompanyByCompanyId(String companyId) throws ResourceNotFoundException;
 
-    void createCompany(@Valid CompanyRequest companyRequest);
+    CompanyDto createCompany(@Valid CompanyRequest companyRequest) throws ResourceNotFoundException;
 
     void updateCompany(Integer companyId, @Valid CompanyRequest companyRequest) throws ResourceNotFoundException;
 

@@ -11,6 +11,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.lang.module.ResolutionException;
 import java.util.List;
 import java.util.Objects;
 
@@ -39,7 +40,7 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
     @Override @Transactional
-    public void createCompany(@Valid CompanyRequest companyRequest) {
+    public CompanyDto createCompany(@Valid CompanyRequest companyRequest) throws ResourceNotFoundException {
         Company company = Company.builder()
                 .name(companyRequest.getName())
                 .companyId(companyRequest.getCompanyId())
@@ -50,6 +51,10 @@ public class CompanyServiceImpl implements CompanyService {
                 .techStacks(companyRequest.getTechStacks())
                 .build();
         companyRepository.save(company);
+
+        return companyRepository.findById(company.getId())
+                .map(companyMapper)
+                .orElseThrow(() -> new ResourceNotFoundException("Company not found for this ID: " + company.getCompanyId()));
 
     }
 
