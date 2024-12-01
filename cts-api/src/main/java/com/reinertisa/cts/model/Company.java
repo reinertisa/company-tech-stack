@@ -1,5 +1,7 @@
 package com.reinertisa.cts.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -34,7 +36,9 @@ public class Company {
     @Column(nullable = false)
     private CompanyType type;
 
-    @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @JsonManagedReference
+    @JsonIgnore
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinTable(name = "CompanyTechStackAssoc",
             joinColumns = {@JoinColumn(name = "companyId", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "techStackId", referencedColumnName = "id")})

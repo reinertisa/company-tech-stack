@@ -24,6 +24,8 @@ public class TechStack {
     private TechStackCategory category;
 
     @JsonBackReference
-    @ManyToMany(mappedBy = "techStacks", fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "techStacks",
+            fetch = FetchType.LAZY,
+            cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private Set<Company> companies = new HashSet<>();
 }
