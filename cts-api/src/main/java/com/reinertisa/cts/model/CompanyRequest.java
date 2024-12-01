@@ -31,6 +31,5 @@ public class CompanyRequest {
     @NotNull(message = "This field is required.")
     private CompanyType type;
 
-    private Set<TechStack> techStacks;
-
+    private Set<String> techStackNames;
 }

@@ -37,7 +37,6 @@ public class Company {
     private CompanyType type;
 
     @JsonManagedReference
-    @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinTable(name = "CompanyTechStackAssoc",
             joinColumns = {@JoinColumn(name = "companyId", referencedColumnName = "id")},
