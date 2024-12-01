@@ -11,7 +11,7 @@ public interface CompanyService {
 
     List<CompanyDto> getAllCompanies();
 
-    CompanyDto getCompanyByCompanyId(String companyId) throws ResourceNotFoundException;
+    CompanyDto getCompanyByName(String name) throws ResourceNotFoundException;
 
     CompanyDto createCompany(@Valid CompanyRequest companyRequest) throws ResourceNotFoundException;
 

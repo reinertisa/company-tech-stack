@@ -17,9 +17,6 @@ public class CompanyRequest {
     private String name;
 
     @NotBlank(message = "This field is required.")
-    private String companyId;
-
-    @NotBlank(message = "This field is required.")
     private String address;
 
     @NotNull(message = "This field is required.")

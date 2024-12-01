@@ -9,7 +9,6 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.lang.module.ResolutionException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
@@ -32,12 +31,12 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
     @Override
-    public CompanyDto getCompanyByCompanyId(String companyId) throws ResourceNotFoundException {
-        Objects.requireNonNull(companyId, "Company ID must not be null.");
+    public CompanyDto getCompanyByName(String name) throws ResourceNotFoundException {
+        Objects.requireNonNull(name, "Company name must not be null.");
         return companyRepository
-                .findByCompanyId(companyId)
+                .findByName(name)
                 .map(companyMapper)
-                .orElseThrow(() -> new ResourceNotFoundException("Company not found for this ID: " + companyId));
+                .orElseThrow(() -> new ResourceNotFoundException("Company not found for this name: " + name));
     }
 
     @Override @Transactional
@@ -55,7 +54,6 @@ public class CompanyServiceImpl implements CompanyService {
 
         Company company = Company.builder()
                 .name(companyRequest.getName())
-                .companyId(companyRequest.getCompanyId())
                 .address(companyRequest.getAddress())
                 .numOfEmployees(companyRequest.getNumOfEmployees())
                 .industry(companyRequest.getIndustry())
@@ -67,7 +65,7 @@ public class CompanyServiceImpl implements CompanyService {
 
         return companyRepository.findById(company.getId())
                 .map(companyMapper)
-                .orElseThrow(() -> new ResourceNotFoundException("Company not found for this ID: " + company.getCompanyId()));
+                .orElseThrow(() -> new ResourceNotFoundException("Company not found for this name: " + company.getName()));
 
     }
 

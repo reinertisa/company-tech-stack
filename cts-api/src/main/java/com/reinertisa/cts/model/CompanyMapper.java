@@ -12,7 +12,6 @@ public class CompanyMapper implements Function<Company, CompanyDto> {
         return CompanyDto.builder()
                 .id(company.getId())
                 .name(company.getName())
-                .companyId(company.getCompanyId())
                 .address(company.getAddress())
                 .numOfEmployees(company.getNumOfEmployees())
                 .industry(company.getIndustry())

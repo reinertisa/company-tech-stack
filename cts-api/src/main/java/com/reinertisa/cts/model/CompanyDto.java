@@ -12,7 +12,6 @@ import java.util.Set;
 public class CompanyDto {
     private Long id;
     private String name;
-    private String companyId;
     private String address;
     private Integer numOfEmployees;
     private String industry;

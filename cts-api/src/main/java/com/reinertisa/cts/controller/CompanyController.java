@@ -30,10 +30,10 @@ public class CompanyController {
         }
     }
 
-    @GetMapping(value = "/{cid}")
-    public ResponseEntity<CompanyDto> getCompanyByCompanyId(@PathVariable(value = "cid") String companyId) {
+    @GetMapping(value = "/{name}")
+    public ResponseEntity<CompanyDto> getCompanyByName(@PathVariable(value = "name") String companyName) {
         try {
-            return ResponseEntity.status(HttpStatus.OK).body(companyService.getCompanyByCompanyId(companyId));
+            return ResponseEntity.status(HttpStatus.OK).body(companyService.getCompanyByName(companyName));
         } catch (ResourceNotFoundException ex) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, ex.getMessage(), ex);
         } catch (Exception ex) {
