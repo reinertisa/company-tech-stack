@@ -44,7 +44,7 @@ public class CompanyServiceImpl implements CompanyService {
 
         Set<String> techStackNames = companyRequest.getTechStackNames();
         Set<TechStack> techStacks = new HashSet<>();
-        if (!techStackNames.isEmpty()) {
+        if (techStackNames != null) {
             for (String techStackName: techStackNames) {
                 TechStack techStack = techStackRepository.findTechStackByName(techStackName)
                         .orElseThrow(() -> new ResourceNotFoundException("Tech stack name not found: " + techStackName));
@@ -54,8 +54,8 @@ public class CompanyServiceImpl implements CompanyService {
 
         Company company = Company.builder()
                 .name(companyRequest.getName())
-                .address(companyRequest.getAddress())
-                .numOfEmployees(companyRequest.getNumOfEmployees())
+                .country(companyRequest.getCountry())
+                .size(companyRequest.getSize())
                 .industry(companyRequest.getIndustry())
                 .type(companyRequest.getType())
                 .techStacks(techStacks)

@@ -12,8 +12,8 @@ import java.util.Set;
 public class CompanyDto {
     private Long id;
     private String name;
-    private String address;
-    private Integer numOfEmployees;
+    private String country;
+    private Integer size;
     private String industry;
     private CompanyType type;
     private Set<TechStack> techStacks;

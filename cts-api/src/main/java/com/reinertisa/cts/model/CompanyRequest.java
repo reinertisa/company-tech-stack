@@ -17,10 +17,10 @@ public class CompanyRequest {
     private String name;
 
     @NotBlank(message = "This field is required.")
-    private String address;
+    private String country;
 
     @NotNull(message = "This field is required.")
-    private Integer numOfEmployees;
+    private Integer size;
 
     @NotBlank(message = "This field is required.")
     private String industry;

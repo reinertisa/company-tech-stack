@@ -21,10 +21,10 @@ public class Company {
     private String name;
 
     @Column(nullable = false)
-    private String address;
+    private String country;
 
     @Column(nullable = false)
-    private Integer numOfEmployees;
+    private Integer size;
 
     @Column(nullable = false)
     private String industry;
