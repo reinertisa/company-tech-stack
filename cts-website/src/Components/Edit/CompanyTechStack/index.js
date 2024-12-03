@@ -1,5 +1,5 @@
 import {FormProvider, useFieldArray, useForm} from "react-hook-form";
-import FormSubmit from "../../form/Submit";
+import FormSubmit from "../../Form/Submit";
 
 
 export default function CompanyTechStackPage() {

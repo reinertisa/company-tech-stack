@@ -1,8 +1,8 @@
 import './App.css';
-import Navbar from "./components/root/Navbar";
+import Navbar from "./Components/Root/Navbar";
 import {BrowserRouter, Route, Routes} from "react-router";
-import CompanyPage from "./components/edit/Company";
-import TechStackPage from "./components/edit/TechStack";
+import CompanyPage from "./Components/Edit/Company";
+import TechStackPage from "./Components/Edit/TechStack";
 
 function App() {
     return (
