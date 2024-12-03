@@ -1,6 +1,6 @@
 import {FormProvider, useForm} from "react-hook-form";
-import FormText from "../../form/FormText";
-import FormSubmit from "../../form/Submit";
+import Text from "../../Form/Text";
+import FormSubmit from "../../Form/Submit";
 import axios from "axios";
 
 
@@ -28,8 +28,8 @@ export default function TechStackForm({onSave}) {
     return (
         <FormProvider {...formMethods}>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <FormText name="category" label="Category" />
-                <FormText name="name" label="Tech name" />
+                <Text name="category" label="Category" />
+                <Text name="name" label="Tech name" />
                 <FormSubmit>Save</FormSubmit>
             </form>
 
