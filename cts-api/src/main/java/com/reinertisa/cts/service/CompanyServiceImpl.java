@@ -78,4 +78,9 @@ public class CompanyServiceImpl implements CompanyService {
     public void deleteCompany(Integer companyId) throws ResourceNotFoundException {
 
     }
+
+    @Override
+    public List<CompanyType> getCompanyTypes() {
+        return List.of(CompanyType.values());
+    }
 }

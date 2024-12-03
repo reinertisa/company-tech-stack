@@ -3,6 +3,7 @@ package com.reinertisa.cts.controller;
 import com.reinertisa.cts.exception.ResourceNotFoundException;
 import com.reinertisa.cts.model.CompanyDto;
 import com.reinertisa.cts.model.CompanyRequest;
+import com.reinertisa.cts.model.CompanyType;
 import com.reinertisa.cts.service.CompanyServiceImpl;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -36,6 +37,15 @@ public class CompanyController {
             return ResponseEntity.status(HttpStatus.OK).body(companyService.getCompanyByName(companyName));
         } catch (ResourceNotFoundException ex) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, ex.getMessage(), ex);
+        } catch (Exception ex) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage(), ex);
+        }
+    }
+
+    @GetMapping("/types")
+    public ResponseEntity<List<CompanyType>> getCompanyTypes() {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(companyService.getCompanyTypes());
         } catch (Exception ex) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage(), ex);
         }
