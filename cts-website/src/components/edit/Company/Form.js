@@ -1,90 +1,38 @@
-import {useForm, useFieldArray} from 'react-hook-form';
-import {map} from 'lodash';
+import {useForm, FormProvider} from 'react-hook-form';
 import axios from 'axios';
+import FormText from "../../form/FormText";
+import FormSubmit from "../../form/Submit";
 
-export default function CompanyForm() {
-    const {register, handleSubmit, control} = useForm({
+export default function CompanyForm({onSave}) {
+    const formMethods = useForm({
         defaultValues: {
-            name: 'Linkedin',
-            companyId: 'L1234',
-            address: 'Sunnyvale, CA',
-            numOfEmployees: 100,
-            industry: 'Social',
-            type: 'MULTINATIONAL',
-            techStacks: [{
-                name: '',
-                category: ''
-            }]
+            name: '',
+            country: '',
+            size: '',
+            industry: '',
+            type: '',
         }
     });
 
-    const {fields, append, remove} = useFieldArray({
-        name: 'techStacks', control
-    });
+    const {handleSubmit, control} = formMethods;
 
     const onSubmit = async (data) => {
-        const result = await axios.post("http://localhost:8080/api/v1/companies", {
+        const rez = await axios.post("http://localhost:8080/api/v1/companies", {
             ...data,
         })
-        console.log('Data submitted successfully');
-        console.log(result);
+        onSave(rez?.data);
     }
 
     return (
+        <FormProvider {...formMethods}>
         <form onSubmit={handleSubmit(onSubmit)}>
-            <div>
-                <label htmlFor="name">Company name: </label>
-                <input id="name" type="text"{...register('name')}/>
-            </div>
-
-            <div>
-                <label htmlFor="companyId">Company ID: </label>
-                <input id="companyId" type="text" {...register('companyId')}/>
-            </div>
-
-            <div>
-                <label htmlFor="address">Address: </label>
-                <input id="address" type="text" {...register("address")} />
-            </div>
-
-            <div>
-                <label htmlFor="numOfEmployees">Number of employees: </label>
-                <input id="numOfEmployeess" type="text" {...register("numOfEmployees")} />
-            </div>
-
-            <div>
-                <label htmlFor="industry">Industry: </label>
-                <input id="industry" type="text" {...register("industry")} />
-            </div>
-
-            <div>
-                <label htmlFor="type">Company Type: </label>
-                <input id="type" type="text" {...register("type")} />
-            </div>
-
-            <div>
-                <label htmlFor="techStacks">Tech Name: </label>
-                {map(fields, (field, index) => {
-                    return (
-                        <div key={field.id}>
-                            <input type="text" {...register(`techStacks.${index}.name`)} />
-                            <input type="text" {...register(`techStacks.${index}.category`)} />
-                            {index > 0 && (
-                                    <button type="button" onClick={() => remove({name: ''})}>
-                                        Remove
-                                    </button>
-                                )
-                            }
-                        </div>
-                    )
-
-                })}
-                <button type="button" onClick={() => append({name: ''})}>Add tech stack</button>
-            </div>
-
-            <div>
-                <button type="submit">Submit</button>
-            </div>
+            <FormText name="name" label="Company name" />
+            <FormText name="country" label="Country" />
+            <FormText name="size" label="Number of employees" />
+            <FormText name="industry" label="Industry" />
+            <FormText name="type" label="Type" />
+            <FormSubmit>Save</FormSubmit>
         </form>
+        </FormProvider>
     )
 }
