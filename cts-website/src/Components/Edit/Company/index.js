@@ -4,6 +4,7 @@ import ReadableWithTemplate from "../../Templates/ReadableWith";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import useGet from "../../Hooks/getData";
+import {filter} from 'lodash';
 
 export default function CompanyPage() {
     const [loading, setLoading] = useState(false);
@@ -39,12 +40,16 @@ export default function CompanyPage() {
         setData([...data, val]);
     }
 
+    const deleteHandler = (id) => {
+        setData(filter(data, (val) => val?.id !== id));
+    }
+
     let body = loading ? 'Loading' : '';
     if (data && typeResponse) {
         body = (
             <>
                 <CompanyForm types={typeResponse?.data} onSave={saveHandler}  />
-                <CompanyList data={data} />
+                <CompanyList data={data} onDelete={deleteHandler}/>
             </>
 
         );
