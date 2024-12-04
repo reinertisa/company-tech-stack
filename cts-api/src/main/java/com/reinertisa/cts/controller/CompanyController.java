@@ -59,4 +59,16 @@ public class CompanyController {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage(), ex);
         }
     }
+
+    @DeleteMapping("/{cid}")
+    public ResponseEntity<Void> deleteCompany(@PathVariable("cid") Long id) {
+        try {
+            companyService.deleteCompany(id);
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
+        } catch (ResourceNotFoundException ex) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, ex.getMessage(), ex);
+        } catch (Exception ex) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage(), ex);
+        }
+    }
 }

@@ -70,13 +70,16 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
     @Override
-    public void updateCompany(Integer companyId, CompanyRequest companyRequest) throws ResourceNotFoundException {
+    public void updateCompany(Long id, CompanyRequest companyRequest) throws ResourceNotFoundException {
 
     }
 
-    @Override
-    public void deleteCompany(Integer companyId) throws ResourceNotFoundException {
-
+    @Override @Transactional
+    public void deleteCompany(Long id) throws ResourceNotFoundException {
+        Objects.requireNonNull(id, "Company ID must not be null.");
+        Company company = companyRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Company not found with ID: " + id));
+        companyRepository.delete(company);
     }
 
     @Override

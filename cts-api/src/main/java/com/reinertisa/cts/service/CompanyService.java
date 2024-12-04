@@ -16,9 +16,9 @@ public interface CompanyService {
 
     CompanyDto createCompany(@Valid CompanyRequest companyRequest) throws ResourceNotFoundException;
 
-    void updateCompany(Integer companyId, @Valid CompanyRequest companyRequest) throws ResourceNotFoundException;
+    void updateCompany(Long id, @Valid CompanyRequest companyRequest) throws ResourceNotFoundException;
 
-    void deleteCompany(Integer companyId) throws ResourceNotFoundException;
+    void deleteCompany(Long id) throws ResourceNotFoundException;
 
     List<CompanyType> getCompanyTypes();
 }
